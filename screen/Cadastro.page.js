@@ -9,7 +9,6 @@ class CadastroPage {
     get inputConfirmarSenha() { return $('//android.widget.EditText[@content-desc="input-repeat-password"]') }
     
     // Mapeamento Botôes:
-
     get btnAbaSignUp() { return $('//android.widget.TextView[@text="Sign up"]') }
     get btnSignUp() { return $('//android.view.ViewGroup[@content-desc="button-SIGN UP"]/android.view.ViewGroup') }
     
@@ -20,7 +19,7 @@ class CadastroPage {
     get msgErroSenha() { return $('//android.widget.ScrollView[@content-desc="Login-screen"]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView[2]') }
     get msgErroConfirmaSenha() { return $('//android.widget.ScrollView[@content-desc="Login-screen"]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView[3]') }
 
-    // Métodos de Login:
+    // Métodos da página:
     async acessarTelaCadastro() {
         loginPage.acessarTelaLogin()
         await this.btnAbaSignUp.click()

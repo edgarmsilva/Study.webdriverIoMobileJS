@@ -15,7 +15,7 @@ class LoginPage {
     get msgErroEmail() { return $('//android.widget.ScrollView[@content-desc="Login-screen"]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView[1]') }
     get msgErroSenha() { return $('//android.widget.ScrollView[@content-desc="Login-screen"]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView[2]') }
 
-    // Métodos de Login:
+    // Métodos da página:
     async acessarTelaLogin() {
         await this.btnMenuTelaLogin.click()
         await driver.pause(1000)

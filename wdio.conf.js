@@ -9,8 +9,8 @@ exports.config = {
 
 
     // Config Browserstack:
-    // user: process.env.BROWSERSTACK_USERNAME || 'edgarsilva_kTfxBa',
-    // key: process.env.BROWSERSTACK_ACCESS_KEY || 'D9FdsMqrStw13pWSuZSd',
+    // user: process.env.BROWSERSTACK_USERNAME || 'user',
+    // key: process.env.BROWSERSTACK_ACCESS_KEY || 'senha',
     // hostname: 'hub.browserstack.com',
 
     runner: 'local',
@@ -32,8 +32,8 @@ exports.config = {
     //
     specs: [
         './tests/*.test.js',
-        // './specs/**'
     ],
+    
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'

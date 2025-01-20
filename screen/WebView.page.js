@@ -3,11 +3,7 @@ import utils from "../screen/utils";
 
 class WebViewPage {
 
-    // Mapeamento inputs:
-
-
     // Mapeamento Botôes:
-
     get btnWebView() { return $('//android.view.View[@content-desc="Webview"]') }
     get btnGetStarted() { return $('//android.view.View[@content-desc="Get Started"]') }
     get btnWhyWebdriver() { return $('//android.view.View[@content-desc="Why WebdriverIO?"]') }
@@ -19,7 +15,6 @@ class WebViewPage {
 
 
     // Métodos da página:
-
     async verificarBanner() {
         utils.waitForElement(this.textWebview)
         // await browser.pause(5000)
