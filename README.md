@@ -13,6 +13,7 @@ tests: cenários de testes da aplicação
 
 ## Requirements:
 nodeJs
+
 appium
 
 ## O Escopo dessa automação é:
