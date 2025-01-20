@@ -1,6 +1,7 @@
 {
   "name": "Study.webdriverIoMobileJS",
   "devDependencies": {
+    "@wdio/allure-reporter": "^9.5.0",
     "@wdio/appium-service": "^9.5.7",
     "@wdio/browserstack-service": "^9.5.7",
     "@wdio/cli": "^9.5.7",
@@ -11,6 +12,10 @@
     "appium-uiautomator2-driver": "^3.9.9"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "wdio run ./wdio.conf.js",
+    "report": "allure generate allure-results --clean && allure open"
+  },
+  "dependencies": {
+    "allure-commandline": "^2.32.0"
   }
 }

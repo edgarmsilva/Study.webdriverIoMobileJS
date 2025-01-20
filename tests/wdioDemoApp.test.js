@@ -1,16 +1,9 @@
 import CadastroPage from "../screen/Cadastro.page";
 import loginPage from "../screen/login.page"
+import utils from "../screen/utils";
 import WebViewPage from "../screen/WebView.page";
 
 describe('Testes WdioDemoApp', function () {
-
-    beforeEach(() => {
-        driver.activateApp('com.wdiodemoapp');
-    })
-
-    afterEach(() => {
-        driver.terminateApp('com.wdiodemoapp');
-    })
 
     // it('Validar login com sucesso', async function () {
     //     await loginPage.acessarTelaLogin()
@@ -59,29 +52,27 @@ describe('Testes WdioDemoApp', function () {
     //     await expect(CadastroPage.msgErroConfirmaSenha).toHaveText('Please enter the same password')
     // })
 
-    
     it('Acessar a tela WebView', async function () {
         await WebViewPage.acessarTelaWebview()
-        await expect(WebViewPage.textWebview).toHaveText("Next-gen browser and mobile automation test framework for Node.js")
+        await expect(WebViewPage.textWebview).toHaveText("Next-genaaa browser and mobile automation test framework for Node.js")
+        await utils.capturarTela()
     })
 
-    // it('Acessar a opção Get Started no WebView', async function () {
-    //     await WebViewPage.acessarTelaWebview()
-
-    //     await WebViewPage.selecionarOpcao('Get Started')
-    //     await WebViewPage.titleGetStarted.isDisplayed()
-    //     await driver.pause(5000)
-    // })
+    it('Acessar a opção Get Started no WebView', async function () {
+        await WebViewPage.acessarTelaWebview()
+        await WebViewPage.selecionarOpcao('Get Started')
+        utils.waitForElement(WebViewPage.titleGetStarted)
+        await utils.capturarTela()
+    })
 
     // it('Acessar a opção Why WebdriverIO? no WebView', async function () {
     //     await WebViewPage.acessarTelaWebview()
-
     //     await WebViewPage.selecionarOpcao('Why WebdriverIO?')
-    //     await WebViewPage.titleWhy.isDisplayed()
-    //     await driver.pause(5000)
+    //     utils.waitForElement(WebViewPage.titleWhy)
+    //     await utils.capturarTela()
     // })
 
 
 
-    
+
 })

@@ -1,3 +1,5 @@
+const { addAttachment } = require('@wdio/allure-reporter').default;
+
 exports.config = {
     //
     // ====================
@@ -10,10 +12,6 @@ exports.config = {
     // user: process.env.BROWSERSTACK_USERNAME || 'edgarsilva_kTfxBa',
     // key: process.env.BROWSERSTACK_ACCESS_KEY || 'D9FdsMqrStw13pWSuZSd',
     // hostname: 'hub.browserstack.com',
-
-
-
-
 
     runner: 'local',
     port: 4723,
@@ -190,7 +188,14 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    // reporters: ['spec'],
+
+
+    reporters: ['spec',['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+    }]],
 
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -269,8 +274,9 @@ exports.config = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    // beforeTest: function (test, context) {
-    // },
+    beforeTest: function (test, context) {
+        driver.activateApp('com.wdiodemoapp');
+    },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
@@ -293,8 +299,17 @@ exports.config = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+        if (!passed) {
+            const scenarioName = test.title.replace(/\s+/g, '-').toLowerCase()
+            // Formata o nome do cenário 
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
+            const screenshotPath = `./screenshots/failure-${scenarioName}.png`
+            await driver.saveScreenshot(screenshotPath)
+            addAttachment('Screenshot', screenshotPath, 'image/png')
+        }
+        driver.terminateApp('com.wdiodemoapp')
+    },
 
 
     /**
@@ -360,7 +375,8 @@ exports.config = {
     // }
 }
 
-exports.config.capabilities.forEach(function (caps) {
-    for (let i in exports.config.commonCapabilities)
-      caps[i] = { ...caps[i], ...exports.config.commonCapabilities[i]};
-  });
+// exports.config.capabilities.forEach(function (caps) {
+//     for (let i in exports.config.commonCapabilities)
+//         caps[i] = { ...caps[i], ...exports.config.commonCapabilities[i] };
+// });
+

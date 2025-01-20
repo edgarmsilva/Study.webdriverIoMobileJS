@@ -1,4 +1,5 @@
-import { $ } from '@wdio/globals'
+import { $, browser, driver } from '@wdio/globals'
+import utils from "../screen/utils";
 
 class WebViewPage {
 
@@ -20,8 +21,10 @@ class WebViewPage {
     // Métodos da página:
 
     async verificarBanner() {
-        const popUp = await browser.$('//android.view.View[@resource-id="__docusaurus"]/android.view.View[1]');
-        const isDisplayed = await popUp.isDisplayed();
+        utils.waitForElement(this.textWebview)
+        // await browser.pause(5000)
+        const popUp = await browser.$('//android.widget.TextView[@text="🇺🇦  We stand with the people of Ukraine. We encourage compassion, and hope for peace.   🇺🇦"]');
+        const isDisplayed = await popUp.isDisplayed();   
         if (isDisplayed) {
             const closeBtn = await browser.$('//android.widget.Button[@text="Close"]');
             await closeBtn.click();
@@ -32,13 +35,14 @@ class WebViewPage {
 
     async acessarTelaWebview() {
         await this.btnWebView.click()
-        this.verificarBanner()
+        await this.verificarBanner()
         await this.textWebview.isDisplayed()
     }
 
     async selecionarOpcao(opcao) {
         const btnOpcao = await browser.$(`//android.view.View[@content-desc="${opcao}"]`)
         await btnOpcao.click()
+        await driver.pause(3000)
 
     }
 }
