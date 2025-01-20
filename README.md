@@ -13,6 +13,7 @@ tests: cenários de testes da aplicação
 
 ## Requirements:
 nodeJs
+
 appium
 
 ## O Escopo dessa automação é:
@@ -22,7 +23,7 @@ Validar a Busca de usuários Validar o Cadastro de usuários Validar a Edição 
 Execute o comando abaixo para instalar todas as dependencias: 
 
 ```
-npm init wdio@latest .
+npm install
 ```
 
 
