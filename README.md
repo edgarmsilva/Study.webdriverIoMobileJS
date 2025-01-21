@@ -37,7 +37,7 @@ npm install
 ## Execução local:
 é necessário um device físico conectado ao computador com o apk [native-demo-app](https://github.com/webdriverio/native-demo-app/releases) instalado.
 
-### Para rodar todos os testes:
+## Para rodar todos os testes:
 
 1. deve-se executar o Appium em um terminal de sua preferência com o comando:
 ```
